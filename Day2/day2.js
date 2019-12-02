@@ -1,14 +1,14 @@
 const fs = require('fs')
 
 const star1 = () => {
-    const intcode = fs.readFileSync('/home/lukas/Dev/adventOfCode/Inputs/Day2/star1.txt').toString().split(",").map((value) => parseInt(value))
+    const intcode = fs.readFileSync('../Inputs/Day2/star1.txt').toString().split(",").map((value) => parseInt(value))
     intcode[1] = 12
     intcode[2] = 2
     console.log(runIntCode(intcode)[0])
 }
 
 const star2 = () => {
-    let initialIntcode = fs.readFileSync('/home/lukas/Dev/adventOfCode/Inputs/Day2/star1.txt').toString().split(",").map((value) => parseInt(value))
+    let initialIntcode = fs.readFileSync('../Inputs/Day2/star1.txt').toString().split(",").map((value) => parseInt(value))
     for (let i = 0; i <= 99; i++) {
         for (let j = i; j <= 99; j++) {
             let intcode = [...initialIntcode]
@@ -16,8 +16,7 @@ const star2 = () => {
             intcode[2] = j
             intcode = runIntCode(intcode)
             if (intcode[0] === 19690720) {
-                console.log(100 * intcode[1] + intcode[2])
-                break;
+                console.log(100 * i + j)
             }
         }
     }
