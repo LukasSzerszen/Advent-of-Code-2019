@@ -29,5 +29,5 @@ My solutions to the advent of code 2019
 |5|||
 |4|||
 |3|||
-|2|||
+|2|⭐|⭐|
 |1|⭐|⭐|
