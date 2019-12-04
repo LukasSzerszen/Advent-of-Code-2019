@@ -11,16 +11,15 @@ const directions = {
 const star1 = () => {
     const firstWire = file[0].split(',')
     let pos = [0,0]
-    let circuitboard = {}
+    let circuitboard = new Set()
     for(const step of firstWire){ 
         let instr = step.split(/([a-zA-Z])([0-9]+)/g)
-        let dir = directions[instr[1]] // (0,1)
-        let amountOfSteps = parseInt(instr[2]) // 5454
+        let dir = directions[instr[1]] 
+        let amountOfSteps = parseInt(instr[2]) 
         for(let i = 0; i< amountOfSteps; i++ ){
             pos = [pos[0] + dir[0], pos[1] + dir[1]]
-            circuitboard[[...pos]] = true
+            circuitboard.add(`${[...pos]}`)
         }
-
     }
     //wire2
     pos = [0,0]
@@ -30,10 +29,9 @@ const star1 = () => {
         let instr = step.split(/([a-zA-Z])([0-9]+)/g)
         let dir = directions[instr[1]]
         let amountOfSteps = parseInt(instr[2])
-
         for(let i = 0; i< amountOfSteps; i++ ){
             pos = [pos[0] + dir[0], pos[1] + dir[1]]
-            if(circuitboard[pos]){
+            if(circuitboard.has(`${[...pos]}`)){
                 intersections.push(pos)
             }
         }
@@ -44,8 +42,7 @@ const star1 = () => {
 const manhattanDistance = (intersections) =>{
     distances = []
     for(const [x1,y1] of intersections){
-        distances.push(Math.abs(x1) + Math.abs(y1))
-        
+        distances.push(Math.abs(x1) + Math.abs(y1))     
     }
     return Math.min(...distances)
 }
